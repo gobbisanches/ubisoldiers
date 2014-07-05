@@ -6,7 +6,7 @@ package com.github.gobbisanches.ubisoldiers.mechanics;
 // Design Pattern: Singleton
 public final class PolicyManager {
     private final static PolicyManager INSTANCE = new PolicyManager();
-    private MechanicsPolicy mechanicsPolicy = new DefaultMechanicsPolicy();
+    private GameRules gameRules = new DefaultGameRules();
 
     private PolicyManager() {
     }
@@ -15,11 +15,11 @@ public final class PolicyManager {
         return INSTANCE;
     }
 
-    public static MechanicsPolicy getMechanicsPolicy() {
-        return getInstance().mechanicsPolicy;
+    public static GameRules getDefaultRules() {
+        return getInstance().gameRules;
     }
 
-    public static void setMechanicsPolicy(MechanicsPolicy mechanicsPolicy) {
-        getInstance().mechanicsPolicy = mechanicsPolicy;
+    public static void setGameRules(GameRules gameRules) {
+        getInstance().gameRules = gameRules;
     }
 }

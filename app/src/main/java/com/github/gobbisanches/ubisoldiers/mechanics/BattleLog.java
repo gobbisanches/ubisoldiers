@@ -20,4 +20,12 @@ public class BattleLog {
     public void addBattleResultEntry(BattleLogEntry.BattleResultType battleResultType) {
         entries.add(BattleLogEntry.createBattleResultEntry(battleResultType));
     }
+
+    public void getParsedBy(BattleLogParser parser) {
+        parser.onStartParsing();
+        for (BattleLogEntry entry : entries) {
+            entry.getParsedBy(parser);
+        }
+        parser.onFinishParsing();
+    }
 }

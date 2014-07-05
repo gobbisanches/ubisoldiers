@@ -9,14 +9,8 @@ public class Battle {
     private final BattleSquad attackerSquad;
     private final BattleSquad defenderSquad;
     private final Random random;
-    private int currentRound;
     private final BattleLog log;
-
-    public static BattleLog performBattleAndReturnLog(Random random, Squad attackerSquad, Squad defenderSquad) {
-        Battle battle = new Battle(random, attackerSquad, defenderSquad);
-        battle.performBattle();
-        return battle.log;
-    }
+    private int currentRound;
 
     private Battle(Random random, Squad attackerSquad, Squad defenderSquad) {
         this.random = random;
@@ -24,6 +18,12 @@ public class Battle {
         this.defenderSquad = new BattleSquad(defenderSquad);
         this.currentRound = 0;
         this.log = new BattleLog();
+    }
+
+    public static BattleLog performBattleAndReturnLog(Random random, Squad attackerSquad, Squad defenderSquad) {
+        Battle battle = new Battle(random, attackerSquad, defenderSquad);
+        battle.performBattle();
+        return battle.log;
     }
 
     private void performBattle() {
@@ -96,7 +96,7 @@ public class Battle {
     }
 
     private int calculateDamage(BattleUnit attacker, BattleUnit defender) {
-        return PolicyManager.getMechanicsPolicy().calculateDamage(
+        return PolicyManager.getDefaultRules().calculateDamage(
                 random,
                 attacker.getUnit(),
                 defender.getUnit());

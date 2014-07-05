@@ -33,7 +33,7 @@ public class BattleUnit {
     }
 
     private int calculateHitPointsForUnit() {
-        return PolicyManager.getMechanicsPolicy().calculateHitPointsForUnit(unit);
+        return PolicyManager.getDefaultRules().calculateHitPointsForUnit(unit);
     }
 
     // helper method - a shortcut to avoid feature envy
