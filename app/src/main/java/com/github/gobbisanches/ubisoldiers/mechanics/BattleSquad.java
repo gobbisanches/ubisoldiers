@@ -8,61 +8,45 @@ import java.util.Random;
  * Created by Sanches on 29/06/2014.
  */
 public class BattleSquad {
-    private final Squad squad;
-    private List<Integer> unitHp;
-    // unitHp has 3 elements. Each one stores the hp of the corresponding unit
-    // with the same index the in the Squad
+    private Squad squad;
+    private List<BattleUnit> units;
 
     public BattleSquad(Squad squad) {
         this.squad = squad;
-        this.unitHp = new ArrayList<Integer>(3);
+        this.units = new ArrayList<BattleUnit>(3);
 
         for(int i = 0; i < 3; ++i) {
-            this.unitHp.set(i, PolicyManager.getMechanicsPolicy().calculateHitPointsForUnit(squad.getUnit(i)));
+            this.units.set(i, new BattleUnit(squad.getUnit(i)));
         }
     }
 
-    public void takeDamageForUnit(int unitIndex, int damage) {
-        if((unitIndex < 0) || (unitIndex > 2)) {
-            throw new RuntimeException("Index for a Unit in a Squad must be in 0..2, but it was" + unitIndex);
-        }
+    public void removeDeadUnits() {
+        List<BattleUnit> deadUnits = new ArrayList<BattleUnit>();
 
-        this.unitHp.set(unitIndex, this.unitHp.get(unitIndex) - damage);
-    }
-
-    public void takeDamageForRandomUnit(int damage) {
-
-    }
-
-    public void getRandomUnit(Random random) {
-
-    }
-
-    private boolean isUnitAlive(int index) {
-        return this.unitHp.get(index) > 0;
-    }
-
-    private int getCountOfAliveUnits() {
-        int aliveCount = 0;
-
-        for (Integer i : this.unitHp) {
-
-        }
-    }
-
-    public List<Integer> getRandomAliveUnitSequence(Random random, int sequenceLength) {
-
-    }
-
-    public List<Unit> getAliveUnits() {
-        List<Unit> aliveUnits = new ArrayList<Unit>(0);
-
-        for(int i = 0; i < 3; ++i) {
-            if(isUnitAlive(i)) {
-                aliveUnits.add(this.squad.getUnit(i));
+        for (int i = 0; i < units.size(); ++i) {
+            if (units.get(i).isDead()) {
+                deadUnits.add(units.get(i));
             }
         }
 
-        return aliveUnits;
+        units.removeAll(deadUnits);
+    }
+
+    public List<BattleUnit> getUnits() {
+        return units;
+    }
+
+    public BattleUnit getRandomUnit(Random random) {
+        return units.get(random.nextInt(units.size()));
+    }
+
+    public boolean isThereLivingUnits() {
+        for (BattleUnit unit : units) {
+            if (unit.isAlive()) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
