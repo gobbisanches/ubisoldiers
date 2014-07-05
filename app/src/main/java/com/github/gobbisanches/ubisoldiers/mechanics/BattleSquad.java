@@ -49,4 +49,8 @@ public class BattleSquad {
 
         return false;
     }
+
+    public boolean isEveryoneDead() {
+        return !isThereLivingUnits();
+    }
 }

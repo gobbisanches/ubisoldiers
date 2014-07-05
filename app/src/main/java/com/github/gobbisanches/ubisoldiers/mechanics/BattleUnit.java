@@ -35,5 +35,10 @@ public class BattleUnit {
     private int calculateHitPointsForUnit() {
         return PolicyManager.getMechanicsPolicy().calculateHitPointsForUnit(unit);
     }
+
+    // helper method - a shortcut to avoid feature envy
+    public String getSoldierName() {
+        return getUnit().getSoldier().getName();
+    }
 }
 
