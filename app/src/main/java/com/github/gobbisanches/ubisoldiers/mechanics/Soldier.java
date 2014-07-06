@@ -3,19 +3,20 @@ package com.github.gobbisanches.ubisoldiers.mechanics;
 /**
  * Created by Sanches on 29/06/2014.
  */
-public class Soldier {
+public class Soldier extends Item{
     String name;
     double attack;
     double defense;
 
-    public Soldier(String name, double attack, double defense) {
+    public Soldier(Item.Rarity rarity, String name, double attack, double defense) {
+        super(rarity);
         this.name = name;
         this.attack = attack;
         this.defense = defense;
     }
 
     public Soldier(Soldier other) {
-        this(other.getName(), other.getAttack(), other.getDefense());
+        this(other.getRarity(), other.getName(), other.getAttack(), other.getDefense());
     }
 
     public String getName() {

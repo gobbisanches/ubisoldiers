@@ -3,18 +3,19 @@ package com.github.gobbisanches.ubisoldiers.mechanics;
 /**
  * Created by Sanches on 29/06/2014.
  */
-public class Armor {
+public class Armor extends Item {
     String name;
     double defense;
-    public final static Armor NONE = new Armor("NONE", 0);
+    public final static Armor NONE = new Armor(Item.Rarity.Common, "NONE", 0);
 
-    public Armor(String name, double defense) {
+    public Armor(Item.Rarity rarity, String name, double defense) {
+        super(rarity);
         this.name = name;
         this.defense = defense;
     }
 
     public Armor(Armor other) {
-        this(other.getName(), other.getDefense());
+        this(other.getRarity(), other.getName(), other.getDefense());
     }
 
 

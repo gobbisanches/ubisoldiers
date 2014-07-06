@@ -9,4 +9,6 @@ public interface GameRules {
     public Integer calculateHitPointsForUnit(Unit unit);
 
     public Integer calculateDamage(Random random, Unit attacker, Unit defender);
+
+    public Integer calculateQualityOf(Item item);
 }

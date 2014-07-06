@@ -3,18 +3,19 @@ package com.github.gobbisanches.ubisoldiers.mechanics;
 /**
  * Created by Sanches on 29/06/2014.
  */
-public class Weapon {
+public class Weapon extends Item {
     String name;
     double attack;
-    public final static Weapon NONE = new Weapon("NONE", 0);
+    public final static Weapon NONE = new Weapon(Item.Rarity.Common, "NONE", 0);
 
-    public Weapon(String name, double attack) {
+    public Weapon(Rarity rarity, String name, double attack) {
+        super(rarity);
         this.name = name;
         this.attack = attack;
     }
 
     public Weapon(Weapon other) {
-        this(other.getName(), other.getAttack());
+        this(other.getRarity(), other.getName(), other.getAttack());
     }
 
     public String getName() {
