@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent" android:orientation="horizontal">
+
+    <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:gravity="center_vertical|left">
+        <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Medium Text"
+                    android:id="@+id/textView" android:layout_column="0"/>
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageView" android:src="@drawable/attack2" android:layout_column="1"/>
+        </TableRow>
+        <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Medium Text"
+                    android:id="@+id/textView2" android:layout_column="0"/>
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageView2" android:src="@drawable/defense2" android:layout_column="1"/>
+        </TableRow>
+        <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+        </TableRow>
+        <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+        </TableRow>
+        <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+        </TableRow>
+        <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+        </TableRow>
+        <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+        </TableRow>
+    </TableLayout>
+</LinearLayout>

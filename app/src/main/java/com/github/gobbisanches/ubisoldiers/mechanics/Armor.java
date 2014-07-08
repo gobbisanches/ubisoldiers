@@ -6,16 +6,16 @@ package com.github.gobbisanches.ubisoldiers.mechanics;
 public class Armor extends Item {
     String name;
     double defense;
-    public final static Armor NONE = new Armor(Item.Rarity.Common, "NONE", 0);
+//    public final static Armor NONE = new Armor(Item.Rarity.Common, "NONE", 0);
 
-    public Armor(Item.Rarity rarity, String name, double defense) {
-        super(rarity);
+    public Armor(int id, Item.Rarity rarity, String name, double defense) {
+        super(id, rarity);
         this.name = name;
         this.defense = defense;
     }
 
     public Armor(Armor other) {
-        this(other.getRarity(), other.getName(), other.getDefense());
+        this(other.getId(), other.getRarity(), other.getName(), other.getDefense());
     }
 
 

@@ -5,8 +5,8 @@ package com.github.gobbisanches.ubisoldiers.mechanics;
  */
 public class Unit {
     Soldier soldier;
-    Weapon weapon = Weapon.NONE;
-    Armor armor = Armor.NONE;
+    Weapon weapon;
+    Armor armor;
 
     public Unit(Soldier soldier, Weapon weapon, Armor armor) {
         this.soldier = soldier;
@@ -16,10 +16,6 @@ public class Unit {
 
     public Unit(Unit other) {
         this(other.getSoldier(), other.getWeapon(), other.getArmor());
-    }
-
-    public Unit(Soldier soldier) {
-        this.soldier = soldier;
     }
 
     public Soldier getSoldier() {

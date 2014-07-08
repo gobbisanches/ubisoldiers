@@ -6,16 +6,16 @@ package com.github.gobbisanches.ubisoldiers.mechanics;
 public class Weapon extends Item {
     String name;
     double attack;
-    public final static Weapon NONE = new Weapon(Item.Rarity.Common, "NONE", 0);
+//    public final static Weapon NONE = new Weapon(Item.Rarity.Common, "NONE", 0);
 
-    public Weapon(Rarity rarity, String name, double attack) {
-        super(rarity);
+    public Weapon(int id, Rarity rarity, String name, double attack) {
+        super(id, rarity);
         this.name = name;
         this.attack = attack;
     }
 
     public Weapon(Weapon other) {
-        this(other.getRarity(), other.getName(), other.getAttack());
+        this(other.getId(), other.getRarity(), other.getName(), other.getAttack());
     }
 
     public String getName() {
