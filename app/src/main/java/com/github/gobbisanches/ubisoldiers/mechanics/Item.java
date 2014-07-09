@@ -1,9 +1,13 @@
 package com.github.gobbisanches.ubisoldiers.mechanics;
 
+import java.io.Serializable;
+
 /**
  * Created by Sanches on 06/07/2014.
  */
-public class Item {
+public class Item implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private Rarity rarity;
     ;
     private int id;

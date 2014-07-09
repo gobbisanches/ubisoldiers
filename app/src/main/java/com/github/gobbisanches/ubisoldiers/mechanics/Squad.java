@@ -1,12 +1,14 @@
 package com.github.gobbisanches.ubisoldiers.mechanics;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Sanches on 29/06/2014.
  */
-public class Squad {
+public class Squad implements Serializable {
+    private static final long serialVersionUID = 1L;
     private final ArrayList<Unit> units;
 
     public Squad(List<Unit> units) {

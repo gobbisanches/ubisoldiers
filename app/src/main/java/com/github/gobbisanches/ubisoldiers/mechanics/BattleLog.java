@@ -1,12 +1,15 @@
 package com.github.gobbisanches.ubisoldiers.mechanics;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by sanches on 7/4/14.
  */
-public class BattleLog {
+public class BattleLog implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private List<BattleLogEntry> entries = new ArrayList<BattleLogEntry>();
 
     public BattleLog() {

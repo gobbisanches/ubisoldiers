@@ -1,5 +1,6 @@
 package com.github.gobbisanches.ubisoldiers.mechanics;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -7,16 +8,17 @@ import java.util.Random;
 /**
  * Created by Sanches on 29/06/2014.
  */
-public class BattleSquad {
+public class BattleSquad implements Serializable {
+    private static final long serialVersionUID = 1L;
     private Squad squad;
     private List<BattleUnit> units;
 
     public BattleSquad(Squad squad) {
         this.squad = squad;
-        this.units = new ArrayList<BattleUnit>(3);
+        this.units = new ArrayList<BattleUnit>();
 
         for(int i = 0; i < 3; ++i) {
-            this.units.set(i, new BattleUnit(squad.getUnit(i)));
+            this.units.add(new BattleUnit(squad.getUnit(i)));
         }
     }
 

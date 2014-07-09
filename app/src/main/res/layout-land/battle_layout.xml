@@ -17,39 +17,39 @@
                 android:baselineAligned="false" android:showDividers="none"
                 android:divider="@drawable/metal_horizontal_line" android:layout_gravity="left|top"
                 android:dividerPadding="16dp">
-            <fragment android:layout_width="280dp"
-                      android:layout_height="84dp"
-                      android:name="com.github.gobbisanches.ubisoldiers.app.UnitFragment" android:id="@+id/fragment"
-                      tools:layout="@layout/unit_layout" android:layout_weight="1"
-                      android:layout_gravity="center_vertical|left"/>
-            <fragment android:layout_width="280dp"
-                      android:layout_height="84dp"
-                      android:name="com.github.gobbisanches.ubisoldiers.app.UnitFragment" android:id="@+id/fragment2"
-                      tools:layout="@layout/unit_layout" android:layout_weight="1"
-                      android:layout_gravity="center_vertical|left"/>
-            <fragment android:layout_width="280dp"
-                      android:layout_height="84dp"
-                      android:name="com.github.gobbisanches.ubisoldiers.app.UnitFragment" android:id="@+id/fragment3"
-                      tools:layout="@layout/unit_layout" android:layout_weight="1"
-                      android:layout_gravity="center_vertical|left"/>
+            <FrameLayout android:layout_width="280dp"
+                         android:layout_height="84dp"
+                         android:id="@+id/attackerUnit1Fragment"
+                         tools:layout="@layout/unit_layout" android:layout_weight="1"
+                         android:layout_gravity="center_vertical|left"/>
+            <FrameLayout android:layout_width="280dp"
+                         android:layout_height="84dp"
+                         android:id="@+id/attackerUnit2Fragment"
+                         tools:layout="@layout/unit_layout" android:layout_weight="1"
+                         android:layout_gravity="center_vertical|left"/>
+            <FrameLayout android:layout_width="280dp"
+                         android:layout_height="84dp"
+                         android:id="@+id/attackerUnit3Fragment"
+                         tools:layout="@layout/unit_layout" android:layout_weight="1"
+                         android:layout_gravity="center_vertical|left"/>
         </LinearLayout>
         <LinearLayout android:orientation="vertical" android:layout_width="wrap_content"
                       android:layout_height="wrap_content" android:id="@+id/linearLayout" android:layout_weight="1"
                       android:gravity="end" android:showDividers="none"
                       android:divider="@drawable/metal_horizontal_line" android:layout_gravity="right|top"
                       android:dividerPadding="16dp" android:baselineAligned="false">
-            <fragment tools:layout="@layout/unit_layout" android:layout_width="280dp"
-                      android:layout_height="84dp"
-                      android:name="com.github.gobbisanches.ubisoldiers.app.UnitFragment" android:id="@+id/fragment4"
-                      android:layout_weight="0" android:layout_gravity="center_vertical|right"/>
-            <fragment tools:layout="@layout/unit_layout" android:layout_width="280dp"
-                      android:layout_height="84dp"
-                      android:name="com.github.gobbisanches.ubisoldiers.app.UnitFragment" android:id="@+id/fragment5"
-                      android:layout_weight="0" android:layout_gravity="center_vertical|right"/>
-            <fragment tools:layout="@layout/unit_layout" android:layout_width="280dp"
-                      android:layout_height="84dp"
-                      android:name="com.github.gobbisanches.ubisoldiers.app.UnitFragment" android:id="@+id/fragment6"
-                      android:layout_weight="0" android:layout_gravity="center_vertical|right"/>
+            <FrameLayout tools:layout="@layout/unit_layout" android:layout_width="280dp"
+                         android:layout_height="84dp"
+                         android:layout_weight="0" android:layout_gravity="center_vertical|right"
+                         android:id="@+id/defenderUnit1Fragment"/>
+            <FrameLayout tools:layout="@layout/unit_layout" android:layout_width="280dp"
+                         android:layout_height="84dp"
+                         android:id="@+id/defenderUnit2Fragment"
+                         android:layout_weight="0" android:layout_gravity="center_vertical|right"/>
+            <FrameLayout tools:layout="@layout/unit_layout" android:layout_width="280dp"
+                         android:layout_height="84dp"
+                         android:id="@+id/defenderUnit3Fragment"
+                         android:layout_weight="0" android:layout_gravity="center_vertical|right"/>
         </LinearLayout>
     </LinearLayout>
     <Button

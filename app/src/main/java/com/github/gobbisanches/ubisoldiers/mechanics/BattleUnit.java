@@ -1,9 +1,12 @@
 package com.github.gobbisanches.ubisoldiers.mechanics;
 
+import java.io.Serializable;
+
 /**
  * Created by sanches on 7/4/14.
  */
-public class BattleUnit {
+public class BattleUnit implements Serializable {
+    private static final long serialVersionUID = 1L;
     private Unit unit;
     private int hp;
 

@@ -1,12 +1,14 @@
 package com.github.gobbisanches.ubisoldiers.mechanics;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by sanches on 7/4/14.
  */
-public class BattleLogEntry {
+public class BattleLogEntry implements Serializable {
+    private static final long serialVersionUID = 1L;
     private Type type;
     ;
     private List<String> params;
@@ -57,8 +59,6 @@ public class BattleLogEntry {
     }
 
     private void shootingGetParsedBy(BattleLogParser parser) {
-        List<String> params = new ArrayList<String>();
-
         int round = Integer.valueOf(params.get(0)).intValue();
         String shooterName = params.get(1);
         String targetName = params.get(2);

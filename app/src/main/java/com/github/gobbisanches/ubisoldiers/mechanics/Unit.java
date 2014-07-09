@@ -1,9 +1,12 @@
 package com.github.gobbisanches.ubisoldiers.mechanics;
 
+import java.io.Serializable;
+
 /**
  * Created by Sanches on 29/06/2014.
  */
-public class Unit {
+public class Unit implements Serializable {
+    private static final long serialVersionUID = 1L;
     Soldier soldier;
     Weapon weapon;
     Armor armor;
