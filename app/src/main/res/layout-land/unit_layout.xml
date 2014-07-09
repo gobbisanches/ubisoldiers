@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content" android:orientation="vertical" android:padding="8dp"
+              android:background="@drawable/unit_background1"
+        >
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="280dp"
+            android:layout_height="32dp">
+        <TextView
+                android:layout_width="138dp"
+                android:layout_height="32dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Corporal"
+                android:id="@+id/nameView" android:textStyle="bold|italic" android:typeface="sans"
+                android:paddingLeft="8dp" android:layout_gravity="center_vertical|left" android:singleLine="true"/>
+        <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:id="@+id/soldierImageView"
+                android:src="@drawable/rank_staff_sergeant" android:layout_gravity="center_vertical|right"
+                android:layout_marginRight="5dp" android:layout_marginLeft="5dp"/>
+        <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:id="@+id/weaponImageView"
+                android:src="@drawable/weapon2" android:layout_gravity="center_vertical|right"
+                android:layout_marginRight="5dp" android:layout_marginLeft="5dp"/>
+        <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:id="@+id/armorImageView"
+                android:src="@drawable/armor4" android:layout_gravity="center_vertical|right"
+                android:layout_marginRight="5dp" android:layout_marginLeft="5dp"/>
+    </LinearLayout>
+    <Space
+            android:layout_width="fill_parent"
+            android:layout_height="4dp"
+            />
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="280dp"
+            android:layout_height="32dp" android:layout_gravity="left|top">
+        <TextView
+                android:layout_width="48dp"
+                android:layout_height="32dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="5"
+                android:id="@+id/attackView" android:layout_column="1" android:layout_gravity="center_vertical"
+                android:textStyle="bold" android:typeface="monospace"
+                android:minWidth="32dp" android:textAlignment="center" android:textIsSelectable="false"
+                android:singleLine="true" android:phoneNumber="false" android:password="false"
+                android:gravity="center|center_vertical"/>
+        <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:id="@+id/imageView" android:src="@drawable/attack2" android:layout_column="2"
+                android:contentDescription="A" android:minWidth="32dp" android:maxWidth="32dp"
+                android:minHeight="32dp" android:maxHeight="32dp" android:longClickable="false"
+                android:layout_gravity="center_vertical" android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"/>
+        <TextView
+                android:layout_width="48dp"
+                android:layout_height="32dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="37"
+                android:id="@+id/defenseView" android:layout_column="1" android:layout_gravity="center_vertical"
+                android:textStyle="bold" android:typeface="monospace"
+                android:minWidth="32dp" android:textAlignment="center" android:textIsSelectable="false"
+                android:singleLine="true" android:phoneNumber="false" android:password="false"
+                android:gravity="center|center_vertical"/>
+        <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:id="@+id/imageView2" android:src="@drawable/defense2" android:layout_column="2"
+                android:maxHeight="32dp" android:maxWidth="32dp" android:layout_gravity="center_vertical"
+                android:layout_marginLeft="4dp" android:layout_marginRight="4dp"/>
+        <TextView android:layout_width="48dp" android:layout_height="32dp"
+                  android:textAppearance="?android:attr/textAppearanceLarge" android:text="180"
+                  android:id="@+id/hpView" android:layout_column="1" android:layout_gravity="center_vertical"
+                  android:textStyle="bold" android:typeface="monospace" android:minWidth="32dp"
+                  android:textAlignment="center" android:textIsSelectable="false" android:singleLine="true"
+                  android:phoneNumber="false" android:password="false" android:gravity="center|center_vertical"/>
+        <ImageView android:layout_width="32dp" android:layout_height="32dp" android:id="@+id/imageView3"
+                   android:src="@drawable/heart" android:layout_column="2" android:maxHeight="32dp"
+                   android:maxWidth="32dp" android:minHeight="32dp" android:minWidth="32dp"
+                   android:scaleType="fitXY" android:layout_gravity="center_vertical" android:layout_marginLeft="4dp"
+                   android:layout_marginRight="4dp"/>
+    </LinearLayout>
+</LinearLayout>

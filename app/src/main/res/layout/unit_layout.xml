@@ -10,49 +10,54 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent">
             <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Medium Text"
-                    android:id="@+id/textView" android:layout_column="0"/>
+                    android:layout_width="48dp"
+                    android:layout_height="32dp"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="5"
+                    android:id="@+id/attackView" android:layout_column="1" android:layout_gravity="center"
+                    android:textStyle="bold" android:typeface="monospace"
+                    android:minWidth="32dp" android:textAlignment="center" android:textIsSelectable="false"
+                    android:singleLine="true" android:phoneNumber="false" android:password="false"
+                    android:gravity="center|center_vertical"/>
             <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/imageView" android:src="@drawable/attack2" android:layout_column="1"/>
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:id="@+id/imageView" android:src="@drawable/attack2" android:layout_column="2"
+                    android:contentDescription="A" android:minWidth="32dp" android:maxWidth="32dp"
+                    android:minHeight="32dp" android:maxHeight="32dp" android:longClickable="false"/>
         </TableRow>
         <TableRow
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent">
             <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Medium Text"
-                    android:id="@+id/textView2" android:layout_column="0"/>
+                    android:layout_width="48dp"
+                    android:layout_height="32dp"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="37"
+                    android:id="@+id/defenseView" android:layout_column="1" android:layout_gravity="center"
+                    android:textStyle="bold" android:typeface="monospace"
+                    android:minWidth="32dp" android:textAlignment="center" android:textIsSelectable="false"
+                    android:singleLine="true" android:phoneNumber="false" android:password="false"
+                    android:gravity="center|center_vertical"/>
             <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/imageView2" android:src="@drawable/defense2" android:layout_column="1"/>
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:id="@+id/imageView2" android:src="@drawable/defense2" android:layout_column="2"
+                    android:maxHeight="32dp" android:maxWidth="32dp"/>
         </TableRow>
         <TableRow
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent">
-        </TableRow>
-        <TableRow
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent">
-        </TableRow>
-        <TableRow
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent">
-        </TableRow>
-        <TableRow
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent">
-        </TableRow>
-        <TableRow
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent">
+            <TextView android:layout_width="48dp" android:layout_height="32dp"
+                      android:textAppearance="?android:attr/textAppearanceLarge" android:text="180"
+                      android:id="@+id/textView" android:layout_column="1" android:layout_gravity="center"
+                      android:textStyle="bold" android:typeface="monospace" android:minWidth="32dp"
+                      android:textAlignment="center" android:textIsSelectable="false" android:singleLine="true"
+                      android:phoneNumber="false" android:password="false" android:gravity="center|center_vertical"/>
+            <ImageView android:layout_width="32dp" android:layout_height="32dp" android:id="@+id/imageView3"
+                       android:src="@drawable/heart" android:layout_column="2" android:maxHeight="32dp"
+                       android:maxWidth="32dp" android:minHeight="32dp" android:minWidth="32dp"
+                       android:scaleType="fitXY"/>
         </TableRow>
     </TableLayout>
 </LinearLayout>

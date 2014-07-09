@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 
 public class MainActivity extends Activity {
@@ -11,9 +12,15 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.unit_layout);
-    }
+        //setContentView(R.layout.unit_layout);
+        setContentView(R.layout.battle_layout);
 
+//        TextView attackView  = (TextView) findViewById(R.id.attackView);
+//        TextView defenseView = (TextView) findViewById(R.id.defenseView);
+//
+//        attackView.setText("9");
+//        defenseView.setText("15");
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
