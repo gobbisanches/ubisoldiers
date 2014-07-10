@@ -11,7 +11,7 @@ public interface BattleLogParser {
     public void onFinishParsing();
 
     public void parseShootingEntry(
-            int round, String shooterName,
+            int round, BattleLogEntry.ShootingDirection direction, String shooterName,
             String targetName,
             int damage);
 

@@ -24,7 +24,7 @@ public class BattleUnit implements Serializable {
     }
 
     public void takeDamage(int damage) {
-        hp -= damage;
+        hp = Math.max(hp - damage, 0);
     }
 
     public boolean isAlive() {

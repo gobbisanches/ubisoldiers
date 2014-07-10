@@ -2,6 +2,9 @@ package com.github.gobbisanches.ubisoldiers.mechanics;
 
 import java.util.Random;
 
+import static com.github.gobbisanches.ubisoldiers.mechanics.BattleLogEntry.BattleResultType.*;
+import static com.github.gobbisanches.ubisoldiers.mechanics.BattleLogEntry.ShootingDirection.*;
+
 /**
  * Created by Sanches on 29/06/2014.
  */
@@ -37,9 +40,9 @@ public class Battle {
     private void checkBattleResult() {
         BattleLogEntry.BattleResultType result;
 
-        if      (didAttackerWon()) { result = BattleLogEntry.BattleResultType.ATTACKER_WON; }
-        else if (didDefenderWon()) { result = BattleLogEntry.BattleResultType.DEFENDER_WON; }
-        else                       { result = BattleLogEntry.BattleResultType.DRAW; }
+        if      (didAttackerWon()) { result = ATTACKER_WON; }
+        else if (didDefenderWon()) { result = DEFENDER_WON; }
+        else                       { result = DRAW; }
 
         log.addBattleResultEntry(result);
     }
@@ -75,24 +78,25 @@ public class Battle {
     }
 
     private void performAttackerShootingsForRound() {
-        performShootingsForRound(attackerSquad, defenderSquad);
+        performShootingsForRound(attackerSquad, defenderSquad, FROM_ATTACKER);
     }
 
     private void performDefenderShootingsForRound() {
-        performShootingsForRound(defenderSquad, attackerSquad);
+        performShootingsForRound(defenderSquad, attackerSquad, FROM_DEFENDER);
     }
 
-    private void performShootingsForRound(BattleSquad shooters, BattleSquad targets) {
+    private void performShootingsForRound(BattleSquad shooters, BattleSquad targets,
+                                          BattleLogEntry.ShootingDirection direction) {
         for (BattleUnit shooter : shooters.getUnits()) {
             BattleUnit target = targets.getRandomUnit(random);
-            performShooting(shooter, target);
+            performShooting(shooter, target, direction);
         }
     }
 
-    private void performShooting(BattleUnit shooter, BattleUnit target) {
+    private void performShooting(BattleUnit shooter, BattleUnit target, BattleLogEntry.ShootingDirection direction) {
         int damage = calculateDamage(shooter, target);
         target.takeDamage(damage);
-        log.addShootingEntry(currentRound, shooter, target, damage);
+        log.addShootingEntry(currentRound, direction, shooter, target, damage);
     }
 
     private int calculateDamage(BattleUnit attacker, BattleUnit defender) {

@@ -56,5 +56,5 @@
             android:layout_width="160dp"
             android:layout_height="48dp"
             android:id="@+id/doneButton" android:layout_gravity="center" android:layout_weight="1"
-            android:background="@drawable/mission_accomplished"/>
+            android:background="@drawable/attack6"/>
 </LinearLayout>

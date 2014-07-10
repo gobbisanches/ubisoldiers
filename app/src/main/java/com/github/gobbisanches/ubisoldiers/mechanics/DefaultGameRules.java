@@ -14,12 +14,12 @@ public class DefaultGameRules implements GameRules {
 
     @Override
     public Integer calculateHitPointsForUnit(Unit unit) {
-        return ((int) floor(unit.getDefense() * 5));
+        return ((int) floor(unit.getDefense() * 10));
     }
 
     @Override
     public Integer calculateDamage(Random random, Unit attacker, Unit defender) {
-        double damage = attacker.getAttack() * 4 - defender.getDefense() * 2;
+        double damage = Math.max(attacker.getAttack() * (2+(random.nextInt(256)/128)), 0);
 
         return new Integer((int) Math.floor(damage));
     }

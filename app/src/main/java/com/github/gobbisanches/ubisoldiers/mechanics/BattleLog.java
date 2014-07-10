@@ -15,9 +15,10 @@ public class BattleLog implements Serializable {
     public BattleLog() {
     }
 
-    public void addShootingEntry(int round, BattleUnit shooter, BattleUnit target, int damage) {
+    public void addShootingEntry(int round, BattleLogEntry.ShootingDirection direction,
+                                 BattleUnit shooter, BattleUnit target, int damage) {
         entries.add(BattleLogEntry.createShootingEntry(
-                round, shooter, target, damage));
+                round, direction, shooter, target, damage));
     }
 
     public void addBattleResultEntry(BattleLogEntry.BattleResultType battleResultType) {
@@ -30,5 +31,12 @@ public class BattleLog implements Serializable {
             entry.getParsedBy(parser);
         }
         parser.onFinishParsing();
+    }
+
+    @Override
+    public String toString() {
+        return "BattleLog{\n" +
+                "entries=" + entries +
+                '}';
     }
 }

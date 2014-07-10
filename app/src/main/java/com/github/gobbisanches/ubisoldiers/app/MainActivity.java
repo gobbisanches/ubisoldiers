@@ -11,6 +11,7 @@ import com.github.gobbisanches.ubisoldiers.mechanics.*;
 import static com.github.gobbisanches.ubisoldiers.mechanics.Item.Rarity.*;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 
 public class MainActivity extends Activity {
@@ -19,6 +20,7 @@ public class MainActivity extends Activity {
     private static final int FIRST_ARMOR_ID = 3000;
     private BattleFragment battleFragment;
     private FragmentManager fragmentManager;
+    private Random random;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +51,8 @@ public class MainActivity extends Activity {
         defenderUnits.add(new Unit(soldier1, weapon1, armor3));
         Squad defenderSquad = new Squad(defenderUnits);
 
-        BattleLog battleLog = new BattleLog();
+        random = new Random(0);
+        BattleLog battleLog = Battle.performBattleAndReturnLog(random, attackerSquad, defenderSquad);
 
         fragmentManager = getFragmentManager();
         battleFragment = createIfMissing(R.id.fragmentContainer, attackerSquad, defenderSquad, battleLog);
