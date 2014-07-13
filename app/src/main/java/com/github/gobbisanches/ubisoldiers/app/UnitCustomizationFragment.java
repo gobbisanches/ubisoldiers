@@ -22,7 +22,7 @@ public class UnitCustomizationFragment extends Fragment implements ItemListFragm
     }
 
     private static final String UNIT_CUSTOMIZATION_ID = "com.github.gobbisanches.ubisoldier.app.UnitCustomizationFragment.UnitCustomizationId";
-    private static final String UNIT_INDEX = "com.github.gobbisanches.ubisoldier.app.UnitCustomizationFragment.Unit";
+    private static final String UNIT_INDEX = "com.github.gobbisanches.ubisoldier.app.UnitCustomizationFragment.UnitIndex";
     private static final String GENERAL = "com.github.gobbisanches.ubisoldier.app.UnitCustomizationFragment.General";
     private static final int SOLDIER_LIST_ID = 0;
     private static final int WEAPON_LIST_ID = 1;
@@ -45,6 +45,7 @@ public class UnitCustomizationFragment extends Fragment implements ItemListFragm
 
         unitCustomizationId = getArguments().getInt(UNIT_CUSTOMIZATION_ID);
         general = (General) getArguments().getSerializable(GENERAL);
+
         unitIndex = getArguments().getInt(UNIT_INDEX);
         unit = general.getSquad().getUnit(unitIndex);
         fragmentManager = getFragmentManager();
@@ -112,6 +113,13 @@ public class UnitCustomizationFragment extends Fragment implements ItemListFragm
                                                         General general,
                                                         int unitIndex,
                                                         UnitCustomizationFragmentListener listener) {
+        if(general == null) {
+            throw new RuntimeException("Invalid General object");
+        }
+        if((unitIndex < 0) || (unitIndex > 2)) {
+            throw new RuntimeException("Invalid unitIndex " + unitIndex);
+        }
+
         Bundle args = new Bundle();
         args.putInt(UNIT_CUSTOMIZATION_ID, unitCustomizationId);
         args.putSerializable(GENERAL, general);

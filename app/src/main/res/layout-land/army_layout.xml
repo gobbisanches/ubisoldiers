@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+        <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="32dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="General Winston Churchill"
+                android:id="@+id/generalNameView" android:textStyle="bold|italic" android:typeface="sans"
+                android:paddingLeft="8dp" android:layout_gravity="center_vertical|left|top" android:singleLine="true"
+                android:layout_weight="0" android:maxHeight="32dp" android:minHeight="32dp"/>
+    </LinearLayout>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" android:layout_weight="1">
+            <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/unit1View" android:layout_weight="1">
+            </FrameLayout>
+            <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/unit2View" android:layout_weight="1">
+            </FrameLayout>
+            <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/unit3View" android:layout_weight="1">
+            </FrameLayout>
+        </LinearLayout>
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" android:layout_weight="1">
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

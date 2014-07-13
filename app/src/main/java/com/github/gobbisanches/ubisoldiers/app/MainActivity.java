@@ -2,6 +2,7 @@ package com.github.gobbisanches.ubisoldiers.app;
 
 import android.app.Activity;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,7 +20,9 @@ public class MainActivity extends Activity implements UnitCustomizationFragment.
     private static final int FIRST_ARMOR_ID = 3000;
     private BattleFragment battleFragment;
     private UnitCustomizationFragment unitCustomizationFragment;
+    private ArmyFragment armyFragment;
     private FragmentManager fragmentManager;
+
     private Random random;
 
     @Override
@@ -58,7 +61,18 @@ public class MainActivity extends Activity implements UnitCustomizationFragment.
 
         fragmentManager = getFragmentManager();
 //        battleFragment = createBattleFragmentIfMissing(R.id.fragmentContainer, attackerSquad, defenderSquad, battleLog);
-        unitCustomizationFragment = createUnitCustomizationFragmentIfMissing(R.id.fragmentContainer, General.getPlayerGeneral(), 0);
+        //unitCustomizationFragment = createUnitCustomizationFragmentIfMissing(R.id.fragmentContainer, General.getPlayerGeneral(), 0);
+        armyFragment = createArmyFragmentIfMissing(R.id.fragmentContainer, General.getPlayerGeneral());
+    }
+
+    private ArmyFragment createArmyFragmentIfMissing(int id, General general) {
+        ArmyFragment fragment = (ArmyFragment) fragmentManager.findFragmentById(id);
+        if (fragment == null) {
+            fragment = ArmyFragment.newInstance(general);
+            fragmentManager.beginTransaction().add(id, fragment).commit();
+        }
+
+        return fragment;
     }
 
     private BattleFragment createBattleFragmentIfMissing(int id, Squad attackerSquad, Squad defenderSquad, BattleLog battleLog) {
@@ -103,5 +117,12 @@ public class MainActivity extends Activity implements UnitCustomizationFragment.
     @Override
     public void onChangeUnit(int unitCustomizationId, Unit updatedUnit) {
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        armyFragment.updateViews();
     }
 }
