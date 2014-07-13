@@ -50,7 +50,7 @@ public class UnitFragment extends Fragment {
         defenseView = (TextView) v.findViewById(R.id.defenseView);
         hpView = (TextView) v.findViewById(R.id.hpView);
         soldierImageView  = (ImageView) v.findViewById(R.id.soldierImageView);
-        weaponImageView = (ImageView) v.findViewById(R.id.soldierImageView);
+        weaponImageView = (ImageView) v.findViewById(R.id.weaponImageView);
         armorImageView = (ImageView) v.findViewById(R.id.armorImageView);
         linearLayout = (LinearLayout) v.findViewById(R.id.unit_linear_layout);
         state = State.NORMAL;
@@ -90,11 +90,23 @@ public class UnitFragment extends Fragment {
         updateView();
     }
 
+    public void updateBattleUnit(BattleUnit battleUnit) {
+        this.battleUnit = battleUnit;
+        updateView();
+    }
+
+    public void updateUnitAndSetHpToFull(Unit unit) {
+        updateBattleUnit(new BattleUnit(unit));
+    }
+
     public String getSoldierName() {
         return battleUnit.getUnit().getSoldier().getName();
     }
 
     private void updateView() {
+        soldierImageView.setImageResource(ResourceManager.getResourceForItem(battleUnit.getUnit().getSoldier()));
+        weaponImageView.setImageResource(ResourceManager.getResourceForItem(battleUnit.getUnit().getWeapon()));
+        armorImageView.setImageResource(ResourceManager.getResourceForItem(battleUnit.getUnit().getArmor()));
         nameView.setText(battleUnit.getUnit().getSoldier().getName());
         attackView.setText(valueOf(battleUnit.getUnit().getAttack()));
         defenseView.setText(valueOf(battleUnit.getUnit().getDefense()));

@@ -1,7 +1,6 @@
 package com.github.gobbisanches.ubisoldiers.app;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.app.FragmentManager;
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,16 +13,19 @@ import java.util.ArrayList;
 import java.util.Random;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements UnitCustomizationFragment.UnitCustomizationFragmentListener {
     private static final int FIRST_SOLDIER_ID = 1000;
     private static final int FIRST_WEAPON_ID = 2000;
     private static final int FIRST_ARMOR_ID = 3000;
     private BattleFragment battleFragment;
+    private UnitCustomizationFragment unitCustomizationFragment;
     private FragmentManager fragmentManager;
     private Random random;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        General.setPlayerGeneral(new General(1945, "Winston Churchill"));
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity_layout);
 
@@ -55,13 +57,24 @@ public class MainActivity extends Activity {
         BattleLog battleLog = Battle.performBattleAndReturnLog(random, attackerSquad, defenderSquad);
 
         fragmentManager = getFragmentManager();
-        battleFragment = createIfMissing(R.id.fragmentContainer, attackerSquad, defenderSquad, battleLog);
+//        battleFragment = createBattleFragmentIfMissing(R.id.fragmentContainer, attackerSquad, defenderSquad, battleLog);
+        unitCustomizationFragment = createUnitCustomizationFragmentIfMissing(R.id.fragmentContainer, General.getPlayerGeneral(), 0);
     }
 
-    private BattleFragment createIfMissing(int id, Squad attackerSquad, Squad defenderSquad, BattleLog battleLog) {
+    private BattleFragment createBattleFragmentIfMissing(int id, Squad attackerSquad, Squad defenderSquad, BattleLog battleLog) {
         BattleFragment fragment = (BattleFragment) fragmentManager.findFragmentById(id);
         if(fragment == null) {
             fragment = BattleFragment.newInstance(attackerSquad, defenderSquad, battleLog);
+            fragmentManager.beginTransaction().add(id, fragment).commit();
+        }
+
+        return fragment;
+    }
+
+    private UnitCustomizationFragment createUnitCustomizationFragmentIfMissing(int id, General general, int unitIndex) {
+        UnitCustomizationFragment fragment = (UnitCustomizationFragment) fragmentManager.findFragmentById(id);
+        if(fragment == null) {
+            fragment = UnitCustomizationFragment.newInstance(unitIndex, general, unitIndex, this);
             fragmentManager.beginTransaction().add(id, fragment).commit();
         }
 
@@ -85,5 +98,10 @@ public class MainActivity extends Activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onChangeUnit(int unitCustomizationId, Unit updatedUnit) {
+
     }
 }

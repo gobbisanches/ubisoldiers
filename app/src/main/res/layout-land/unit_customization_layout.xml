@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools" android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@drawable/metallic1">
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="84dp" android:id="@+id/unitFragmentView"
+            android:layout_gravity="center_horizontal|top" android:layout_weight="0" android:minHeight="84dp"
+            android:measureAllChildren="false">
+    </FrameLayout>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" android:layout_weight="1">
+        <FrameLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" android:id="@+id/soldierListView" android:layout_gravity="left|top"
+                android:layout_weight="1">
+        </FrameLayout>
+        <FrameLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" android:id="@+id/weaponListView" android:layout_weight="1"
+                android:layout_gravity="center_horizontal|top">
+        </FrameLayout>
+        <FrameLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" android:id="@+id/armorListView" android:layout_gravity="right|top"
+                android:layout_weight="1">
+        </FrameLayout>
+    </LinearLayout>
+</LinearLayout>

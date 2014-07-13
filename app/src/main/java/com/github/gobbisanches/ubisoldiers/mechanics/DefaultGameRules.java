@@ -1,5 +1,7 @@
 package com.github.gobbisanches.ubisoldiers.mechanics;
 
+import android.util.Log;
+
 import java.util.Random;
 
 import static com.github.gobbisanches.ubisoldiers.mechanics.Item.Rarity.*;
@@ -19,9 +21,14 @@ public class DefaultGameRules implements GameRules {
 
     @Override
     public Integer calculateDamage(Random random, Unit attacker, Unit defender) {
-        double damage = Math.max(attacker.getAttack() * (2+(random.nextInt(256)/128)), 0);
+        double randomValue = random.nextDouble();
+        int damage = (int)Math.floor(Math.max(attacker.getAttack() * (2+2* randomValue), 0));
 
-        return new Integer((int) Math.floor(damage));
+        Log.d("UBISOLDIERS", "Damage = " + damage + ", with attack=" + attacker.getAttack() +
+                ", with defense=" + defender.getDefense() +
+                " and randomValue=" + randomValue);
+
+        return new Integer(damage);
     }
 
     @Override
@@ -33,14 +40,14 @@ public class DefaultGameRules implements GameRules {
                 break;
             case Uncommon: quality += 100;
                 break;
-            case Rare: quality += 1000;
+            case Rare: quality += 300;
                 break;
-            default: throw new RuntimeException("Invalid item rarity" + item.getRarity());
+            case Epic: quality += 500;
+                break;
+            case Legendary: quality += 1000;
+                break;
+            default: throw new RuntimeException("Invalid item rarity " + item.getRarity());
         }
-
-        if(item instanceof Soldier) { quality += 3; }
-        else if (item instanceof Weapon) { quality += 2; }
-        else if (item instanceof Armor) { quality += 1; }
 
         return new Integer(quality);
     }

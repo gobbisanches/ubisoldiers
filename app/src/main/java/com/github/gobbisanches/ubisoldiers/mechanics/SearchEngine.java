@@ -11,7 +11,7 @@ public class SearchEngine {
     Integer sumOfQualityOfAllItems;
 
     public SearchEngine() {
-        allItems = ItemCollection.getAllItems();
+        allItems = General.getPlayerGeneral().getAllMissingItemsSortedByQuality();
         sumOfQualityOfAllItems = 0;
         for(Item item : allItems) {
             sumOfQualityOfAllItems += item.getQuality();
