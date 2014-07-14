@@ -1,4 +1,4 @@
-apply plugin: 'maven'
+//apply plugin: 'maven'
 
 buildscript {
     repositories {
@@ -25,19 +25,11 @@ android {
     }
 }
 
-repositories {
-    maven {
-        url 'http://ubiquitos.googlecode.com/svn/trunk/src/Java/maven/'
-    }
-
-    mavenCentral()
-}
+//repositories {
+//    mavenCentral()
+//}
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:19.+'
-    // classpath 'com.android.tools.build:gradle:0.9.+'
-    // compile group: 'org.unbiquitous', name: 'uos-core', version: '3.0.0'
-    // compile group: 'org.unbiquitous', name: 'uos-core'
-    // compile 'org.unbiquitous:uos-core:3.0.0'
 }

@@ -8,11 +8,13 @@ import android.view.LayoutInflater;
 import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import com.github.gobbisanches.ubisoldiers.mechanics.BattleUnit;
-import com.github.gobbisanches.ubisoldiers.mechanics.General;
-import com.github.gobbisanches.ubisoldiers.mechanics.Unit;
+import android.widget.Toast;
+import com.github.gobbisanches.ubisoldiers.mechanics.*;
+
+import java.util.Random;
 
 /**
  * Created by Sanches on 13/07/2014.
@@ -21,6 +23,7 @@ public class ArmyFragment extends Fragment {
     private static final String GENERAL = "com.github.gobbisanches.ubisoldier.app.ArmyFragment.General";
 
     private TextView generalNameView;
+    private Button procurementButton;
     private UnitFragment unit1Fragment;
     private UnitFragment unit2Fragment;
     private UnitFragment unit3Fragment;
@@ -40,6 +43,7 @@ public class ArmyFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.army_layout, container, false);
         generalNameView = (TextView) v.findViewById(R.id.generalNameView);
+        procurementButton = (Button) v.findViewById(R.id.procurementButton);
         fragmentManager = getFragmentManager();
         unit1Fragment = createIfMissing(R.id.unit1View,
                 General.getPlayerGeneral().getSquad().getUnit(0));
@@ -51,6 +55,12 @@ public class ArmyFragment extends Fragment {
         unit2View = (FrameLayout) v.findViewById(R.id.unit2View);
         unit3View = (FrameLayout) v.findViewById(R.id.unit3View);
 
+        procurementButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                performProcurement();
+            }
+        });
         unit1View.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -73,8 +83,19 @@ public class ArmyFragment extends Fragment {
         });
 
 
-
         return v;
+    }
+
+    private void performProcurement() {
+        SearchEngine searchEngine = new SearchEngine();
+        if (searchEngine.hasPlayerNoMissingItems()) {
+            Toast.makeText(getActivity(), "Sir, there is no item left for you to acquire", Toast.LENGTH_LONG).show();
+        } else {
+            Item newItem = new SearchEngine().performSearch(new Random(), 1.0);
+
+            General.getPlayerGeneral().addItem(newItem);
+            Toast.makeText(getActivity(), "Sir, you managed to acquire " + newItem.getName(), Toast.LENGTH_LONG).show();
+        }
     }
 
     private void customizeUnit(int unitIndex) {
@@ -87,7 +108,7 @@ public class ArmyFragment extends Fragment {
 
     private UnitFragment createIfMissing(int id, Unit unit) {
         UnitFragment fragment = (UnitFragment) fragmentManager.findFragmentById(id);
-        if(fragment == null) {
+        if (fragment == null) {
             fragment = UnitFragment.newInstance(new BattleUnit(unit));
             fragmentManager.beginTransaction().add(id, fragment).commit();
         }

@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="uos_core_snapshot">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/libs/uos_core_snapshot.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/app/libs/uos_core_snapshot.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -4,14 +4,22 @@ import android.app.Activity;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 import com.github.gobbisanches.ubisoldiers.mechanics.*;
 
 import static com.github.gobbisanches.ubisoldiers.mechanics.Item.Rarity.*;
 
-import java.util.ArrayList;
-import java.util.Random;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.*;
+
+import org.unbiquitous.uos.core.UOS;
+import org.unbiquitous.uos.core.adaptabitilyEngine.Gateway;
+import org.unbiquitous.uos.core.driverManager.DriverData;
+import org.unbiquitous.uos.core.messageEngine.dataType.UpDriver;
 
 
 public class MainActivity extends Activity implements UnitCustomizationFragment.UnitCustomizationFragmentListener {
@@ -22,8 +30,8 @@ public class MainActivity extends Activity implements UnitCustomizationFragment.
     private UnitCustomizationFragment unitCustomizationFragment;
     private ArmyFragment armyFragment;
     private FragmentManager fragmentManager;
-
     private Random random;
+    private UosManager uosManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +71,13 @@ public class MainActivity extends Activity implements UnitCustomizationFragment.
 //        battleFragment = createBattleFragmentIfMissing(R.id.fragmentContainer, attackerSquad, defenderSquad, battleLog);
         //unitCustomizationFragment = createUnitCustomizationFragmentIfMissing(R.id.fragmentContainer, General.getPlayerGeneral(), 0);
         armyFragment = createArmyFragmentIfMissing(R.id.fragmentContainer, General.getPlayerGeneral());
+
+        uosManager = new UosManager(this);
+        uosManager.startUos();
+        Toast.makeText(this, "Your location is " + uosManager.getLocation().toString(), Toast.LENGTH_LONG).show();
+        Log.d("UBISOLDIERS", "Location = " + uosManager.getLocation().toString());
+        Log.d("UBISOLDIERS", "Your Battle Seed is " + uosManager.performBattle(1, 2));
+        Log.d("UBISOLDIERS", "Your Search Seed is " + uosManager.performSearch(1));
     }
 
     private ArmyFragment createArmyFragmentIfMissing(int id, General general) {

@@ -11,7 +11,6 @@ import static com.github.gobbisanches.ubisoldiers.mechanics.ItemCollection.*;
 public class General implements Serializable {
     private static final long serialVersionUID = 1L;
     private static General PlayerGeneral;
-
     private int id;
     private String name;
     private Squad squad;
@@ -59,40 +58,38 @@ public class General implements Serializable {
 
         insertAllSquadItemsInTheCollections();
 
-        soldierIds.add(PRIVATE_FIRST_CLASS.getId());
-        soldierIds.add(SPECIALIST.getId());
-
-        soldierIds.add(CORPORAL.getId());
-        soldierIds.add(SERGEANT.getId());
-        soldierIds.add(STAFF_SERGEANT.getId());
-        soldierIds.add(SERGEANT_FIRST_CLASS.getId());
-        soldierIds.add(FIRST_SERGEANT.getId());
-        soldierIds.add(MASTER_SERGEANT.getId());
-        soldierIds.add(SERGEANT_MAJOR.getId());
-        soldierIds.add(COMMAND_SERGEANT_MAJOR.getId());
-
-        weaponIds.add(M16A4.getId());
-        weaponIds.add(M4A1.getId());
-
-        weaponIds.add(G36C.getId());
-        weaponIds.add(MK14.getId());
-        weaponIds.add(USAS12.getId());
-        weaponIds.add(FAD.getId());
-        weaponIds.add(P90.getId());
-        weaponIds.add(MP7.getId());
-        weaponIds.add(KGS12.getId());
-        weaponIds.add(L118A.getId());
-        weaponIds.add(STRIKER.getId());
-        weaponIds.add(MP5.getId());
-        weaponIds.add(M60E4.getId());
-        weaponIds.add(KSG12.getId());
-        weaponIds.add(SPAS12.getId());
-        weaponIds.add(MODEL_1887.getId());
-        weaponIds.add(BARRET.getId());
-        weaponIds.add(L86LSQW.getId());
-
-        armorIds.add(REINFORCED_KEVLAR.getId());
-        armorIds.add(TITANIUM_KEVLAR.getId());
+//        soldierIds.add(PRIVATE_FIRST_CLASS.getId());
+//        soldierIds.add(SPECIALIST.getId());
+//        soldierIds.add(CORPORAL.getId());
+//        soldierIds.add(SERGEANT.getId());
+//        soldierIds.add(STAFF_SERGEANT.getId());
+//        soldierIds.add(SERGEANT_FIRST_CLASS.getId());
+//        soldierIds.add(FIRST_SERGEANT.getId());
+//        soldierIds.add(MASTER_SERGEANT.getId());
+//        soldierIds.add(SERGEANT_MAJOR.getId());
+//        soldierIds.add(COMMAND_SERGEANT_MAJOR.getId());
+//
+//        weaponIds.add(M16A4.getId());
+//        weaponIds.add(M4A1.getId());
+//        weaponIds.add(G36C.getId());
+//        weaponIds.add(MK14.getId());
+//        weaponIds.add(USAS12.getId());
+//        weaponIds.add(FAD.getId());
+//        weaponIds.add(P90.getId());
+//        weaponIds.add(MP7.getId());
+//        weaponIds.add(KGS12.getId());
+//        weaponIds.add(L118A.getId());
+//        weaponIds.add(STRIKER.getId());
+//        weaponIds.add(MP5.getId());
+//        weaponIds.add(M60E4.getId());
+//        weaponIds.add(KSG12.getId());
+//        weaponIds.add(SPAS12.getId());
+//        weaponIds.add(MODEL_1887.getId());
+//        weaponIds.add(BARRET.getId());
+//        weaponIds.add(L86LSQW.getId());
+//
+//        armorIds.add(REINFORCED_KEVLAR.getId());
+//        armorIds.add(TITANIUM_KEVLAR.getId());
     }
 
     private void insertAllSquadItemsInTheCollections() {
@@ -199,5 +196,18 @@ public class General implements Serializable {
         }
 
         return allMissingItems;
+    }
+
+    public void addItem(Item item) {
+        if(item instanceof Soldier) {
+            soldierIds.add(item.getIdAsInteger());
+        } else if (item instanceof Weapon) {
+            weaponIds.add(item.getIdAsInteger());
+        } else if (item instanceof Armor) {
+            armorIds.add(item.getIdAsInteger());
+        } else {
+            throw new RuntimeException("Invalid item " + item.toString());
+        }
+
     }
 }

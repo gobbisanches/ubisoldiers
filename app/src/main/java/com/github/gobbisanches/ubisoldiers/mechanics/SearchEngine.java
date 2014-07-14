@@ -37,4 +37,8 @@ public class SearchEngine {
 
         throw new RuntimeException("Error: Could not find any Item for roll " + roll);
     }
+
+    public boolean hasPlayerNoMissingItems() {
+        return (allItems.isEmpty());
+    }
 }
