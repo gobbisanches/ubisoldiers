@@ -24,6 +24,7 @@ import java.util.*;
 
 // UosManager runs in the main task, but its inner tasks run on another threads
 public class UosManager {
+    private static UosManager instance = null;
     private Context context;
     private UOS uos;
 
@@ -68,6 +69,24 @@ public class UosManager {
         }
     }
 
+    public class SearchParameters {
+        private long randomSeed;
+        private double modifier;
+
+        public SearchParameters(long randomSeed, double modifier) {
+            this.randomSeed = randomSeed;
+            this.modifier = modifier;
+        }
+
+        public long getRandomSeed() {
+            return randomSeed;
+        }
+
+        public double getModifier() {
+            return modifier;
+        }
+    }
+
     UosManager(Context context) {
         this.context = context;
     }
@@ -83,55 +102,34 @@ public class UosManager {
 
         if(uos == null) {
             throw new RuntimeException("Invalid UOS object");
-        } else {
-            Log.i("UBISOLDIERS", "The UOS object is valid");
         }
 
         if(uos.getFactory() == null) {
             throw new RuntimeException("Invalid UOS Factory");
-        } else {
-            Log.i("UBISOLDIERS", "The UOS factory is valid");
         }
 
         SmartSpaceGateway gateway = (SmartSpaceGateway) uos.getGateway();
         if(gateway == null) {
             throw new RuntimeException("Invalid UOS Gateway");
-        } else {
-            Log.i("UBISOLDIERS", "The UOS gateway is valid");
         }
 
-
         DriverManager driverManager = gateway.getDriverManager();
-
         UbisoldiersDriver driver = new UbisoldiersDriver();
         try {
             driverManager.deployDriver(driver.getDriver(), driver, "");
         } catch(Exception e) {
-            Log.e("UBISOLDIERS", "Exception when trying to load driver: " + e.getMessage());
+            throw new RuntimeException("Exception when trying to load driver: " + e.getMessage());
         }
 
         List<DriverData> driverDataList = gateway.listDrivers("com.github.gobbisanches.ubisoldiers");
-        Log.d("UBISOLDIERS", "UOS Driver list has " + driverDataList.size() + " elements ");
         DriverData driverData = driverDataList.get(0);
         UpDriver upDriver = driverData.getDriver();
         String driverName = upDriver.getName();
 
         if (driverName == "com.github.gobbisanches.ubisoldiers") {
-            Log.i("UBISOLDIERS", "Driver ok");
+            Log.i("UBISOLDIERS", "Ubisoldiers uOS driver successfully loaded");
         } else {
-            Log.e("UBISOLDIERS", "Driver is broken");
-        }
-
-        try {
-        uos.getGateway().callService(
-                null,
-                "performBattle",
-                "com.github.gobbisanches.ubisoldiers",
-                "",
-                null,
-                new TreeMap<String, Object>());
-        } catch(Exception e) {
-            throw new RuntimeException("Could not invoke a call through UOS: " + e.getMessage());
+            throw new RuntimeException("Unable to initialize the Ubisoldiers uOS driver");
         }
     }
 
@@ -180,15 +178,19 @@ public class UosManager {
             throw new RuntimeException("Could not invoke a call through UOS: " + e.getMessage());
         }
 
+
+
         return ((Long) response.getResponseData("RANDOM_SEED")).longValue();
     }
 
-    long performSearch(int playerGeneralId) {
+    SearchParameters performSearch(int playerGeneralId, Location location, long wifiStrength) {
         TreeMap<String, Object> params = new TreeMap<String, Object>();
         ServiceResponse response;
 
         params.put("CONTEXT", context);
-        params.put("PLAYER_GENERAL_ID", playerGeneralId);
+        params.put("PLAYER_GENERAL_ID", new Integer(playerGeneralId));
+        params.put("LOCATION", location);
+        params.put("SIGNAL_STRENGTH", new Long(wifiStrength));
 
         try {
             response = uos.getGateway().callService(
@@ -202,6 +204,47 @@ public class UosManager {
             throw new RuntimeException("Could not invoke a call through UOS: " + e.getMessage());
         }
 
-        return ((Long) response.getResponseData("RANDOM_SEED")).longValue();
+        long randomSeed = ((Long) response.getResponseData("RANDOM_SEED")).longValue();
+        double modifier = ((Double) response.getResponseData("MODIFIER")).doubleValue();
+
+        return new SearchParameters(randomSeed, modifier);
+    }
+
+    long getWifiSignalStrength() {
+        TreeMap<String, Object> params = new TreeMap<String, Object>();
+        ServiceResponse response;
+
+        params.put("CONTEXT", context);
+
+        try {
+            response = uos.getGateway().callService(
+                    null,
+                    "getWifiSignalStrength",
+                    "com.github.gobbisanches.ubisoldiers",
+                    "",
+                    null,
+                    params);
+        } catch(Exception e) {
+            throw new RuntimeException("Could not invoke a call through UOS: " + e.getMessage());
+        }
+
+        long strength = ((Long) response.getResponseData("SIGNAL_STRENGTH")).longValue();
+
+        Log.d("UBISOLDIERS", "[WIFI] level on Manager = " + strength);
+
+        return strength;
+    }
+
+    public static UosManager getInstance() {
+        if (instance == null) {
+            throw new RuntimeException("UosManager was not initialized");
+        }
+
+        return instance;
+    }
+
+    public static void initInstance(Context context) {
+        instance = new UosManager(context);
+        instance.startUos();
     }
 }

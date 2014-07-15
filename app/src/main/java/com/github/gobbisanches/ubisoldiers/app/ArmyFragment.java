@@ -3,6 +3,7 @@ package com.github.gobbisanches.ubisoldiers.app;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.TextureView;
@@ -24,6 +25,7 @@ public class ArmyFragment extends Fragment {
 
     private TextView generalNameView;
     private Button procurementButton;
+    private Button battleButton;
     private UnitFragment unit1Fragment;
     private UnitFragment unit2Fragment;
     private UnitFragment unit3Fragment;
@@ -44,6 +46,7 @@ public class ArmyFragment extends Fragment {
         View v = inflater.inflate(R.layout.army_layout, container, false);
         generalNameView = (TextView) v.findViewById(R.id.generalNameView);
         procurementButton = (Button) v.findViewById(R.id.procurementButton);
+        battleButton = (Button) v.findViewById(R.id.battleButton);
         fragmentManager = getFragmentManager();
         unit1Fragment = createIfMissing(R.id.unit1View,
                 General.getPlayerGeneral().getSquad().getUnit(0));
@@ -59,6 +62,12 @@ public class ArmyFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 performProcurement();
+            }
+        });
+        battleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                performBattle();
             }
         });
         unit1View.setOnClickListener(new View.OnClickListener() {
@@ -86,12 +95,30 @@ public class ArmyFragment extends Fragment {
         return v;
     }
 
+    private void performBattle() {
+        Long randomSeed = UosManager.getInstance().performBattle(General.getPlayerGeneral().getId(), 2);
+        Random random = new Random(randomSeed.longValue());
+        BattleLog battleLog = Battle.performBattleAndReturnLog(random, General.getPlayerGeneral().getSquad(),
+                new Squad(General.getPlayerGeneral().getSquad()));
+        BattleActivity.startForBattle(
+                General.getPlayerGeneral().getSquad(),
+                General.getPlayerGeneral().getSquad(),
+                battleLog,
+                getActivity());
+    }
+
     private void performProcurement() {
         SearchEngine searchEngine = new SearchEngine();
         if (searchEngine.hasPlayerNoMissingItems()) {
             Toast.makeText(getActivity(), "Sir, there is no item left for you to acquire", Toast.LENGTH_LONG).show();
         } else {
-            Item newItem = new SearchEngine().performSearch(new Random(), 1.0);
+            int generalId = General.getPlayerGeneral().getId();
+            Location location = UosManager.getInstance().getLocation();
+            long wifiLevel = UosManager.getInstance().getWifiSignalStrength();
+            UosManager.SearchParameters params =
+                    UosManager.getInstance().performSearch(generalId, location, wifiLevel);
+
+            Item newItem = new SearchEngine().performSearch(new Random(params.getRandomSeed()), params.getModifier());
 
             General.getPlayerGeneral().addItem(newItem);
             Toast.makeText(getActivity(), "Sir, you managed to acquire " + newItem.getName(), Toast.LENGTH_LONG).show();

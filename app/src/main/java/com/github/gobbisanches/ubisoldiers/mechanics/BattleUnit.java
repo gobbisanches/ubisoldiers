@@ -36,7 +36,7 @@ public class BattleUnit implements Serializable {
     }
 
     private int calculateHitPointsForUnit() {
-        return PolicyManager.getDefaultRules().calculateHitPointsForUnit(unit);
+        return PolicyManager.getRules().calculateHitPointsForUnit(unit);
     }
 
     // helper method - a shortcut to avoid feature envy

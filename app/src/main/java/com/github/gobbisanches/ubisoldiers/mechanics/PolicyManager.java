@@ -15,7 +15,7 @@ public final class PolicyManager {
         return INSTANCE;
     }
 
-    public static GameRules getDefaultRules() {
+    public static GameRules getRules() {
         return getInstance().gameRules;
     }
 

@@ -3,6 +3,7 @@ package com.github.gobbisanches.ubisoldiers.app;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -72,12 +73,15 @@ public class MainActivity extends Activity implements UnitCustomizationFragment.
         //unitCustomizationFragment = createUnitCustomizationFragmentIfMissing(R.id.fragmentContainer, General.getPlayerGeneral(), 0);
         armyFragment = createArmyFragmentIfMissing(R.id.fragmentContainer, General.getPlayerGeneral());
 
-        uosManager = new UosManager(this);
-        uosManager.startUos();
-        Toast.makeText(this, "Your location is " + uosManager.getLocation().toString(), Toast.LENGTH_LONG).show();
-        Log.d("UBISOLDIERS", "Location = " + uosManager.getLocation().toString());
-        Log.d("UBISOLDIERS", "Your Battle Seed is " + uosManager.performBattle(1, 2));
-        Log.d("UBISOLDIERS", "Your Search Seed is " + uosManager.performSearch(1));
+        UosManager.initInstance(this);
+
+//        uosManager = new UosManager(this);
+//        uosManager.startUos();
+//        Toast.makeText(this, "Your location is " + uosManager.getLocation().toString(), Toast.LENGTH_LONG).show();
+//        Log.d("UBISOLDIERS", "Location = " + uosManager.getLocation().toString());
+//        Log.d("UBISOLDIERS", "Your Battle Seed is " + uosManager.performBattle(1, 2));
+//        UosManager.SearchParameters searchParameters = uosManager.performSearch(1, uosManager.getLocation(), uosManager.getWifiSignalStrength());
+//        Log.d("UBISOLDIERS", "Your Search Seed is " + searchParameters.getRandomSeed() + " and modifier is " + searchParameters.getModifier());
     }
 
     private ArmyFragment createArmyFragmentIfMissing(int id, General general) {

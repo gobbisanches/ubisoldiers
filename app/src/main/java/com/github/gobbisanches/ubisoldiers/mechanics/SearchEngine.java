@@ -1,7 +1,11 @@
 package com.github.gobbisanches.ubisoldiers.mechanics;
 
+import android.util.Log;
+
+import java.util.Comparator;
 import java.util.Random;
 import java.util.SortedSet;
+import java.util.TreeSet;
 
 /**
  * Created by Sanches on 05/07/2014.
@@ -23,8 +27,14 @@ public class SearchEngine {
     }
 
     private int performRoll(Random random, double multiplier, int maxValue) {
-        int initialRoll = random.nextInt(maxValue);
-        return Math.max((int) Math.floor(initialRoll * multiplier), maxValue);
+        int initialRoll = Math.abs(random.nextInt(maxValue));
+        int roll = Math.min((int) Math.floor(initialRoll * multiplier), maxValue);
+
+        Log.d("UBISOLDIERS", "[SEARCHENGINE] maxValue = " + maxValue);
+        Log.d("UBISOLDIERS", "[SEARCHENGINE] initialRoll = " + initialRoll);
+        Log.d("UBISOLDIERS", "[SEARCHENGINE] roll = " + roll);
+
+        return roll;
     }
 
     private Item getItemForRoll(int roll) {

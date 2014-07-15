@@ -1,5 +1,7 @@
 package com.github.gobbisanches.ubisoldiers.mechanics;
 
+import android.location.Location;
+
 import java.util.Random;
 
 /**
@@ -11,4 +13,6 @@ public interface GameRules {
     public Integer calculateDamage(Random random, Unit attacker, Unit defender);
 
     public Integer calculateQualityOf(Item item);
+
+    public Double calculateSearchModifier(Location location, Long wifiStrength);
 }

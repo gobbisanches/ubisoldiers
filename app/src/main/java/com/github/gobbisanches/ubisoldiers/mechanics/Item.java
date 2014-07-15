@@ -23,7 +23,7 @@ public class Item implements Serializable, Comparable {
         this.name = name;
         this.attack = attack;
         this.defense = defense;
-        this.quality = PolicyManager.getDefaultRules().calculateQualityOf(this);
+        this.quality = PolicyManager.getRules().calculateQualityOf(this);
     }
 
     public Item(Item other) {

@@ -100,7 +100,7 @@ public class Battle {
     }
 
     private int calculateDamage(BattleUnit attacker, BattleUnit defender) {
-        return PolicyManager.getDefaultRules().calculateDamage(
+        return PolicyManager.getRules().calculateDamage(
                 random,
                 attacker.getUnit(),
                 defender.getUnit());

@@ -4,8 +4,6 @@
       <root url="jar://$PROJECT_DIR$/app/libs/uos_core_snapshot.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES>
-      <root url="jar://$PROJECT_DIR$/app/libs/uos_core_snapshot.jar!/" />
-    </SOURCES>
+    <SOURCES />
   </library>
 </component>
