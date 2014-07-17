@@ -92,13 +92,16 @@ public class Item implements Serializable, Comparable {
 
     @Override
     public int compareTo(Object o) {
-        if(o instanceof Item) {
-            Item otherItem = (Item) o;
-            return id - otherItem.id;
+        if(o == null) {
+            return -1;
         }
-        else {
-            throw new RuntimeException("Invalid comparison of items");
+
+        if(!(o instanceof Item)) {
+            return -1;
         }
+
+        Item otherItem = (Item) o;
+        return id - otherItem.id;
     }
 
     public static class ItemQualityComparator implements Comparator<Item> {

@@ -58,9 +58,11 @@ public class UnitCustomizationFragment extends Fragment implements ItemListFragm
         View v = inflater.inflate(R.layout.unit_customization_layout, container, false);
 
         unitFragment = createUnitFragmentIfMissing(R.id.unitFragmentView, unit);
-        soldierListFragment = createListFragmentIfMissing(R.id.soldierListView, SOLDIER_LIST_ID, new ArrayList<Item>(general.getSoldiers().values()));
-        weaponListFragment = createListFragmentIfMissing(R.id.weaponListView, WEAPON_LIST_ID, new ArrayList<Item>(general.getWeapons().values()));
-        armorListFragment = createListFragmentIfMissing(R.id.armorListView, ARMOR_LIST_ID, new ArrayList<Item>(general.getArmors().values()));
+        ArrayList<Item> soldiers = new ArrayList<Item>(general.getAvailableSoldiers().values());
+        soldiers.add(unit.getSoldier());
+        soldierListFragment = createListFragmentIfMissing(R.id.soldierListView, SOLDIER_LIST_ID, soldiers);
+        weaponListFragment = createListFragmentIfMissing(R.id.weaponListView, WEAPON_LIST_ID, new ArrayList<Item>(general.getAvailableWeapons().values()));
+        armorListFragment = createListFragmentIfMissing(R.id.armorListView, ARMOR_LIST_ID, new ArrayList<Item>(general.getAvailableArmors().values()));
 
         return v;
     }

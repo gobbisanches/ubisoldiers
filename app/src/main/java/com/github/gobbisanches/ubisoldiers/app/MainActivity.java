@@ -23,7 +23,7 @@ import org.unbiquitous.uos.core.driverManager.DriverData;
 import org.unbiquitous.uos.core.messageEngine.dataType.UpDriver;
 
 
-public class MainActivity extends Activity implements UnitCustomizationFragment.UnitCustomizationFragmentListener {
+public class MainActivity extends Activity {
     private static final int FIRST_SOLDIER_ID = 1000;
     private static final int FIRST_WEAPON_ID = 2000;
     private static final int FIRST_ARMOR_ID = 3000;
@@ -41,73 +41,17 @@ public class MainActivity extends Activity implements UnitCustomizationFragment.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity_layout);
 
-        Soldier soldier1 = new Soldier(FIRST_SOLDIER_ID + 0, Common, "Private", 1, 1);
-        Soldier soldier2 = new Soldier(FIRST_SOLDIER_ID + 1, Uncommon, "Sergeant", 3, 3);
-        Soldier soldier3 = new Soldier(FIRST_SOLDIER_ID + 2, Rare, "Captain", 5, 5);
-
-        Weapon weapon1 = new Weapon(FIRST_WEAPON_ID + 0, Common, "Handgun", 1);
-        Weapon weapon2 = new Weapon(FIRST_WEAPON_ID + 1, Uncommon, "Shotgun", 3);
-        Weapon weapon3 = new Weapon(FIRST_WEAPON_ID + 2, Rare, "Rifle", 5);
-
-        Armor armor1 = new Armor(FIRST_ARMOR_ID + 0, Common, "Leather", 1);
-        Armor armor2 = new Armor(FIRST_ARMOR_ID + 1, Uncommon, "Kevlar", 3);
-        Armor armor3 = new Armor(FIRST_ARMOR_ID + 2, Rare, "Spider Silk", 5);
-
-        ArrayList<Unit> attackerUnits = new ArrayList<Unit>();
-        attackerUnits.add(new Unit(soldier1, weapon3, armor2));
-        attackerUnits.add(new Unit(soldier2, weapon1, armor3));
-        attackerUnits.add(new Unit(soldier3, weapon2, armor1));
-        Squad attackerSquad = new Squad(attackerUnits);
-
-        ArrayList<Unit> defenderUnits = new ArrayList<Unit>();
-        defenderUnits.add(new Unit(soldier2, weapon2, armor1));
-        defenderUnits.add(new Unit(soldier3, weapon3, armor2));
-        defenderUnits.add(new Unit(soldier1, weapon1, armor3));
-        Squad defenderSquad = new Squad(defenderUnits);
-
-        random = new Random(0);
-        BattleLog battleLog = Battle.performBattleAndReturnLog(random, attackerSquad, defenderSquad);
-
         fragmentManager = getFragmentManager();
-//        battleFragment = createBattleFragmentIfMissing(R.id.fragmentContainer, attackerSquad, defenderSquad, battleLog);
-        //unitCustomizationFragment = createUnitCustomizationFragmentIfMissing(R.id.fragmentContainer, General.getPlayerGeneral(), 0);
         armyFragment = createArmyFragmentIfMissing(R.id.fragmentContainer, General.getPlayerGeneral());
 
         UosManager.initInstance(this);
 
-//        uosManager = new UosManager(this);
-//        uosManager.startUos();
-//        Toast.makeText(this, "Your location is " + uosManager.getLocation().toString(), Toast.LENGTH_LONG).show();
-//        Log.d("UBISOLDIERS", "Location = " + uosManager.getLocation().toString());
-//        Log.d("UBISOLDIERS", "Your Battle Seed is " + uosManager.performBattle(1, 2));
-//        UosManager.SearchParameters searchParameters = uosManager.performSearch(1, uosManager.getLocation(), uosManager.getWifiSignalStrength());
-//        Log.d("UBISOLDIERS", "Your Search Seed is " + searchParameters.getRandomSeed() + " and modifier is " + searchParameters.getModifier());
     }
 
     private ArmyFragment createArmyFragmentIfMissing(int id, General general) {
         ArmyFragment fragment = (ArmyFragment) fragmentManager.findFragmentById(id);
         if (fragment == null) {
             fragment = ArmyFragment.newInstance(general);
-            fragmentManager.beginTransaction().add(id, fragment).commit();
-        }
-
-        return fragment;
-    }
-
-    private BattleFragment createBattleFragmentIfMissing(int id, Squad attackerSquad, Squad defenderSquad, BattleLog battleLog) {
-        BattleFragment fragment = (BattleFragment) fragmentManager.findFragmentById(id);
-        if(fragment == null) {
-            fragment = BattleFragment.newInstance(attackerSquad, defenderSquad, battleLog);
-            fragmentManager.beginTransaction().add(id, fragment).commit();
-        }
-
-        return fragment;
-    }
-
-    private UnitCustomizationFragment createUnitCustomizationFragmentIfMissing(int id, General general, int unitIndex) {
-        UnitCustomizationFragment fragment = (UnitCustomizationFragment) fragmentManager.findFragmentById(id);
-        if(fragment == null) {
-            fragment = UnitCustomizationFragment.newInstance(unitIndex, general, unitIndex, this);
             fragmentManager.beginTransaction().add(id, fragment).commit();
         }
 
@@ -131,11 +75,6 @@ public class MainActivity extends Activity implements UnitCustomizationFragment.
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onChangeUnit(int unitCustomizationId, Unit updatedUnit) {
-
     }
 
     @Override

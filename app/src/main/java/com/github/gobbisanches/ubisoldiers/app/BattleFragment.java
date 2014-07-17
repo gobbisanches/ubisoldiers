@@ -160,12 +160,13 @@ public class BattleFragment extends Fragment implements BattleLogParser {
 
     private UnitFragment getAttackerFragmentBySoldierName(String soldierName) {
         UnitFragment fragment;
-        if(soldierName == attackerUnit1Fragment.getSoldierName()) {
+
+        if(soldierName.equals(attackerUnit1Fragment.getSoldierName())) {
             fragment = attackerUnit1Fragment;
-        } else if (soldierName == attackerUnit2Fragment.getSoldierName()) {
+        } else if (soldierName.equals(attackerUnit2Fragment.getSoldierName())) {
             fragment = attackerUnit2Fragment;
         }
-        else if (soldierName == attackerUnit3Fragment.getSoldierName()) {
+        else if (soldierName.equals(attackerUnit3Fragment.getSoldierName())) {
             fragment = attackerUnit3Fragment;
         } else {
             throw new RuntimeException("No attacker unit has soldier named \"" + soldierName +"\"");
@@ -175,12 +176,13 @@ public class BattleFragment extends Fragment implements BattleLogParser {
 
     private UnitFragment getDefenderFragmentBySoldierName(String soldierName) {
         UnitFragment fragment;
-        if(soldierName == defenderUnit1Fragment.getSoldierName()) {
+
+        if(soldierName.equals(defenderUnit1Fragment.getSoldierName())) {
             fragment = defenderUnit1Fragment;
-        } else if (soldierName == defenderUnit2Fragment.getSoldierName()) {
+        } else if (soldierName.equals(defenderUnit2Fragment.getSoldierName())) {
             fragment = defenderUnit2Fragment;
         }
-        else if (soldierName == defenderUnit3Fragment.getSoldierName()) {
+        else if (soldierName.equals(defenderUnit3Fragment.getSoldierName())) {
             fragment = defenderUnit3Fragment;
         } else {
             throw new RuntimeException("No defender unit has soldier named \"" + soldierName +"\"");
