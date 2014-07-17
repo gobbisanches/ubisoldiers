@@ -65,7 +65,6 @@ public class DefaultGameRules implements GameRules {
         // modifier is a number between 0.6 and 1.4 (+/- 30%)
 
         // locationModifier is a number between -0.3 and 0.3 (+/- 30%)
-        //double locationNumber = Math.abs(location.getLatitude()) + Math.abs(location.getLongitude()) + Math.abs(location.getTime());
         long distanceInKm = (long) Math.floor(Math.abs(location.distanceTo(baseLocation) / 1000));
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(location.getTime());

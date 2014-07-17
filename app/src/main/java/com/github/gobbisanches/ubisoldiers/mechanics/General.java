@@ -14,9 +14,9 @@ public class General implements Serializable {
     private int id;
     private String name;
     private Squad squad;
-    private TreeSet<Integer> soldierIds;
-    private TreeSet<Integer> weaponIds;
-    private TreeSet<Integer> armorIds;
+    private TreeSet<Integer> soldierIds = new TreeSet<Integer>();
+    private TreeSet<Integer> weaponIds = new TreeSet<Integer>();
+    private TreeSet<Integer> armorIds = new TreeSet<Integer>();
 
     public General(int id, String name, List<Unit> squad, SortedSet<Integer> soldierIds, SortedSet<Integer> weaponIds, SortedSet<Integer> armorIds) {
         setSquadForInitialUsers();
@@ -42,6 +42,8 @@ public class General implements Serializable {
         this.id = id;
         this.name = name;
         this.squad = squad;
+
+        insertAllSquadItemsInTheCollections();
     }
 
     private void setSquadForInitialUsers() {

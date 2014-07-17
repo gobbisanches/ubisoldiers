@@ -80,5 +80,25 @@ public class BattleLogEntry implements Serializable {
                 ", params=" + params +
                 "}\n";
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof BattleLogEntry)) return false;
+
+        BattleLogEntry that = (BattleLogEntry) o;
+
+        if (!params.equals(that.params)) return false;
+        if (type != that.type) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = type.hashCode();
+        result = 31 * result + params.hashCode();
+        return result;
+    }
 }
 

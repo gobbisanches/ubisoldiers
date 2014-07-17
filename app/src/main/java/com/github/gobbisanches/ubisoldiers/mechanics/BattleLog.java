@@ -39,4 +39,21 @@ public class BattleLog implements Serializable {
                 "entries=" + entries +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof BattleLog)) return false;
+
+        BattleLog battleLog = (BattleLog) o;
+
+        if (!entries.equals(battleLog.entries)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return entries.hashCode();
+    }
 }
